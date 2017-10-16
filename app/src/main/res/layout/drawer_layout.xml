@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout
+android:id="@+id/drawer"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+xmlns:android="http://schemas.android.com/apk/res/android">
+<RelativeLayout
+    android:id="@+id/content_left"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="start|left">
+    <include layout="@layout/drawer_left"/>
+</RelativeLayout>
+<RelativeLayout
+    android:id="@+id/content_right"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+   <include layout="@layout/drawer_right"/>
+</RelativeLayout>
+</android.support.v4.widget.DrawerLayout>
