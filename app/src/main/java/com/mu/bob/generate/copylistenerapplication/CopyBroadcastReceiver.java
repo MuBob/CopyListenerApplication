@@ -19,6 +19,7 @@ public class CopyBroadcastReceiver extends BroadcastReceiver {
         if(ACTION.equals(intent.getAction())){
             CharSequence copyText = intent.getCharSequenceExtra("copyText");
             Log.i(TAG, "CopyBroadcastReceiver.onReceive: copyText="+copyText);
+            DBManager.getInstance().insert(copyText);
         }
     }
 

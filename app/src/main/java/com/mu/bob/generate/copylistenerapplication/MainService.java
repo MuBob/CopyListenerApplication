@@ -58,8 +58,6 @@ public class MainService extends Service {
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setContentTitle("复制内容")
                 .setContentText(copyText)
-                .setAutoCancel(false)
-                .setOngoing(true)
                 .setContentIntent(PendingIntent.getBroadcast(this, 102, copyIntent, PendingIntent.FLAG_UPDATE_CURRENT))
                 .setWhen(System.currentTimeMillis());
         //通过builder.build()方法生成Notification对象,并发送通知,id=1
