@@ -1,4 +1,4 @@
-package com.mu.bob.generate.copylistenerapplication;
+package com.mu.bob.generate.copylistenerapplication.data;
 
 import android.content.ContentValues;
 import android.database.Cursor;
@@ -8,6 +8,8 @@ import android.util.Log;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Administrator on 2017/10/16.
@@ -25,7 +27,7 @@ public class DBManager {
     private static final String TAG = "DBManagerTAG";
     private SQLiteDatabase database;
     public static final String FILE_NAME="copy.db";
-    public static final String TABLE_NAME="texttable";
+    public static final String TABLE_NAME= CopyBean.TABLE_NAME;
     private DBManager(){
         createDB();
     }
@@ -56,9 +58,9 @@ public class DBManager {
 
     public void createTable(){
         String sql="create table "+TABLE_NAME+"(" +
-                "_id integer primary key autoincrement," +
-                "text text," +
-                "time text)";
+                CopyBean.ID+" integer primary key autoincrement," +
+                CopyBean.TEXT+" text," +
+                CopyBean.TIME_STAMPLE+" text)";
         if(database==null){
             createDB();
         }
@@ -75,8 +77,8 @@ public class DBManager {
 
     public void insert(CharSequence text){
         ContentValues cValue = new ContentValues();
-        cValue.put("text", String.valueOf(text));
-        cValue.put("time", System.currentTimeMillis());
+        cValue.put(CopyBean.TEXT, String.valueOf(text));
+        cValue.put(CopyBean.TIME_STAMPLE, System.currentTimeMillis());
         if(database==null){
             createDB();
         }
@@ -84,7 +86,7 @@ public class DBManager {
     }
 
     public void delete(int id) {
-        String whereClause = "_id=?";
+        String whereClause = CopyBean.ID+"=?";
         String[] whereArgs = {String.valueOf(id)};
         if(database==null){
             createDB();
@@ -93,7 +95,7 @@ public class DBManager {
     }
 
     public void update( int id, ContentValues values) {
-        String whereClause = "_id=?";
+        String whereClause = CopyBean.ID+"=?";
         String[] whereArgs={String.valueOf(id)};
         if(database==null){
             createDB();
@@ -107,9 +109,24 @@ public class DBManager {
         Cursor cursor = database.query(TABLE_NAME, null, null, null, null, null, null);
         return cursor;
     }
+    public List<CopyBean> queryList(){
+        Cursor cursor=queryAll();
+        if(cursor==null){
+            return null;
+        }
+        List<CopyBean> list=new ArrayList<>();
+        while (cursor.moveToNext()){
+            CopyBean bean=new CopyBean();
+            bean.setId(cursor.getInt(cursor.getColumnIndex(CopyBean.ID)));
+            bean.setText(cursor.getString(cursor.getColumnIndex(CopyBean.TEXT)));
+            bean.setTimestample(cursor.getString(cursor.getColumnIndex(CopyBean.TIME_STAMPLE)));
+            list.add(bean);
+        }
+        return list;
+    }
 
     public Cursor query(int id) {
-        String whereClause = "_id=?";
+        String whereClause = CopyBean.ID+"=?";
         String[] whereArgs={String.valueOf(id)};
         if(database==null){
             createDB();

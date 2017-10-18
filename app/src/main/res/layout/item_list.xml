@@ -12,20 +12,14 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:id="@+id/id"
-            android:layout_weight="1"
-            android:visibility="gone"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_vertical|left"
+            android:gravity="center_vertical|left"
             android:id="@+id/text"
             android:layout_weight="1" />
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right|center_vertical"
+            android:layout_height="match_parent"
+            android:gravity="right|top"
             android:id="@+id/time" />
     </LinearLayout>
 </LinearLayout>

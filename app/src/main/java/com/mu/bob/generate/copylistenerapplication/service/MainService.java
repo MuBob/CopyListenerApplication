@@ -1,4 +1,4 @@
-package com.mu.bob.generate.copylistenerapplication;
+package com.mu.bob.generate.copylistenerapplication.service;
 
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -9,6 +9,8 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
+
+import com.mu.bob.generate.copylistenerapplication.R;
 
 public class MainService extends Service {
 

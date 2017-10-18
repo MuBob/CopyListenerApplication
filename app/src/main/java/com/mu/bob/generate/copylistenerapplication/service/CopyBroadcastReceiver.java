@@ -1,9 +1,11 @@
-package com.mu.bob.generate.copylistenerapplication;
+package com.mu.bob.generate.copylistenerapplication.service;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
+
+import com.mu.bob.generate.copylistenerapplication.data.DBManager;
 
 /**
  * Created by Administrator on 2017/10/16.

@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity">
+            android:name=".ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -22,11 +22,11 @@
         </activity>
 
         <service
-            android:name=".MainService"
+            android:name=".service.MainService"
             android:enabled="true"
             android:exported="true">
         </service>
-        <receiver android:name=".CopyBroadcastReceiver">
+        <receiver android:name=".service.CopyBroadcastReceiver">
             <intent-filter>
                 <action android:name="com.mu.bob.generate.copylistenerapplication.copy.broadcast.action"/>
             </intent-filter>
