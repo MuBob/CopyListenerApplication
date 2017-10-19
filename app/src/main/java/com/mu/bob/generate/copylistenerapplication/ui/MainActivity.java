@@ -57,6 +57,7 @@ public class MainActivity extends AppCompatActivity implements IMainView, Adapte
         mDrawerList.setAdapter(mAdapter);
         mDrawerList.setOnItemClickListener(this);
         mDrawerList.setOnItemLongClickListener(this);
+        registerForContextMenu(mDrawerList);
     }
 
     @Override
@@ -65,6 +66,11 @@ public class MainActivity extends AppCompatActivity implements IMainView, Adapte
         mPresenter.loadList();
     }
 
+    @Override
+    protected void onDestroy() {
+        unregisterForContextMenu(mDrawerList);
+        super.onDestroy();
+    }
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -75,15 +81,21 @@ public class MainActivity extends AppCompatActivity implements IMainView, Adapte
 
     @Override
     public void refreshView(List<CopyBean> list) {
-//        mList.clear();
+        mList.clear();
         mList.addAll(list);
+        mAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void refreshView() {
         mAdapter.notifyDataSetChanged();
     }
 
     @Override
     public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
         mPresenter.setLongClickPosition(i);
-        view.showContextMenu();
+        mDrawerList.showContextMenu();
+        Log.i(TAG, "MainActivity.onItemLongClick: show");
         return true;
     }
 
@@ -91,6 +103,7 @@ public class MainActivity extends AppCompatActivity implements IMainView, Adapte
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         getMenuInflater().inflate(R.menu.menu_list, menu);
         super.onCreateContextMenu(menu, v, menuInfo);
+        Log.i(TAG, "MainActivity.onCreateContextMenu: ");
     }
 
     @Override

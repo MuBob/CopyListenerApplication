@@ -10,4 +10,6 @@ import java.util.List;
 
 public interface IMainView {
     void refreshView(List<CopyBean> list);
+
+    void refreshView();
 }

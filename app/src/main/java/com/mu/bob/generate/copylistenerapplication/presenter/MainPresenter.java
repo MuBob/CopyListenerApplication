@@ -41,7 +41,7 @@ public class MainPresenter {
         if(longClickPosition>=0){
             mModel.deleteById(copyBeans.get(longClickPosition).getId());
             copyBeans.remove(longClickPosition);
-            mView.refreshView(copyBeans);
+            mView.refreshView();
         }
 
     }
